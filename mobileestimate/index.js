@@ -1,26 +1,26 @@
 function estimateTransactionFee() {
-  //prompt
-  const input = prompt("Enter the amount you want to send:");
-  const amounttosend = Number(input);
-  //check if valid  number
-  if (isNaN(amounttosend) || amounttosend <= 0) {
-    console.log("Please enter a valid amount.");
+  // Prompt the user to enter amount
+  const input = prompt("Unatuma Ngapi? (KES):");
+  const amountToSend = Number(input);
+
+  // Validate input
+  if (isNaN(amountToSend) || amountToSend <= 0) {
+    console.log("Tafadhali ingiza kiasi sahihi.");
     return;
   }
-  const feePercent = amounttosend * 0.015;
-  let feetransaction;
-  if (feePercent < 10) {
-    feetransaction = 10; //minimum fee
-  } else if (feePercent > 70) {
-    feetransaction = 70; //maximum fee
-  } else {
-    feetransaction = feePercent; //15% of the amount
-  }
 
-  const totalAmount = amounttosend + feetransaction;
-  console.log(`Amount to send: KES ${amounttosend.toFixed(2)}`);
-  console.log(`Transaction fee: KES ${feetransaction.toFixed(2)}`);
-  console.log(`Total amount debited: KES ${totalAmount.toFixed(2)}`);
-  //return total amount
-  return totalAmount;
+  // Calculate 1.5% fee
+  let fee = amountToSend * 0.015;
+
+  // Apply min and max fee limits
+  fee = Math.max(10, Math.min(fee, 70)); // ensures fee is between 10 and 70
+
+  // Calculate total amount to be debited
+  const total = amountToSend + fee;
+
+  // Display output
+  console.log(`Sending KES ${amountToSend.toFixed(2)}:`);
+  console.log(`Calculated Transaction Fee: KES ${fee.toFixed(2)}`);
+  console.log(`Total amount to be debited: KES ${total.toFixed(2)}`);
+  console.log("Send Money Securely!");
 }
